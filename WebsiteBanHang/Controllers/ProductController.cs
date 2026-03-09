@@ -45,6 +45,7 @@
             }
             return View(product);
         }
+
         public IActionResult Update(int id)
         {
             var product = _productRepository.GetByID(id);
@@ -54,6 +55,7 @@
             }
             return View(product);
         }
+
         [HttpPost]
         public IActionResult Update(Product product)
         {
@@ -64,6 +66,7 @@
             }
             return View(product);
         }
+
         public IActionResult Delete(int id)
         {
             var product = _productRepository.GetByID(id);
@@ -73,6 +76,7 @@
             }
             return View(product);
         }
+        
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {

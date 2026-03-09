@@ -19,6 +19,7 @@
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
             return View();
         }
+        
         [HttpPost]
         public IActionResult Add(Product product)
         {

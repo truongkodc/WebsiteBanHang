@@ -5,7 +5,7 @@
 }
 <h1>Add Product</h1>
 
-<form asp-action="Add">
+<form asp-action="Add" enctype="multipart/form-data">
 	<div asp-validation-summary="All" class="text-danger"></div>
 	<div class="form-group">
 		<label asp-for="Name"></label>
@@ -26,5 +26,14 @@
 		<label asp-for="CategoryId">Category</label>
 		<select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control"></select>
 		<div>
-			<button type="submit" class="btn btn-primary">Add</button>
-			<</form>
+			
+	<div class ="form-group">
+		<label asp-for="ImageUrl">Image</label>
+		<input type="file" asp-for="ImageUrl" class="form-control" />
+	</div>	
+	<div class="form-group">
+		<label>Adtional Images</label>
+		<input type="file" asp-for="ImageUrls" multiple class = "form-control">
+	</div>
+	<button type="submit" class = "btn btn-primary">Add</button>
+<</form>

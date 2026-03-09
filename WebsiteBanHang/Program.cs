@@ -23,3 +23,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.Run();
+app.UseStaticFiles();//cho phép ứng dụng phục vụ các tệp tĩnh từ thư mục wwwroot

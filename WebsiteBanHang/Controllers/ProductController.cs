@@ -1,4 +1,6 @@
-﻿namespace WebsiteBanHang.Controllers
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace WebsiteBanHang.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
@@ -76,12 +78,47 @@
             }
             return View(product);
         }
-        
+
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
             _productRepository.Delete(id);
             return RedirectToAction("Index");
         }
-    }
-}
+
+        [HttpPost]
+        public  async Task<IActionResult> Add(Product product, IFormFile imageUrl, List<IFormFile> imageUrls)
+        {
+            if (ModelState.IsValid)
+            {
+                if(imageUrl != null)
+                {
+                product.ImageUrl= await SaveImage(imageUrl);
+                }
+            if(imageUrls != null)
+            {
+                product.ImageUrls = new List<string>();
+                foreach(var file in imageUrls)
+                {
+                    product.ImageUrls.Add(await SaveImage(file));//Lưu các hình ảnh khác
+                }
+            }
+            _productRepository.Add(product);
+            return RedirectToAction("Index");
+            }
+            return View(product);
+        }
+        private async Task<string> SaveImage(IFormFile image)
+        {
+            var savePath = Path.Combine("wwwroot/images", image.FileName);//Thay đổi đường dẫn theo cấu hình 
+
+            using (var fileSteam = new FileStream (savePath, FileMode.Create))
+            {
+                await image.CopyToAsync(fileSteam);
+            }
+            return "/image/" + image.FileName; // Trả về đường dẫn tương đối
+        }
+            }
+        }
+    
+

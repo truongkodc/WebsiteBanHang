@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSingleton < IProductRepository, MockProductRepository>();
+builder.Services.AddSingleton <IProductRepository, MockProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, MockCategoryRepository>();
 
 var app = builder.Build();

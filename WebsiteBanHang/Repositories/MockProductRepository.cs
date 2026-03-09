@@ -9,9 +9,10 @@ namespace WebsiteBanHang.Repositories
         private readonly List<Product> _products;
         public MockProductRepository()
         {
-            _products = new List<Product>();
+            _products = new List<Product>
             {
-                new Product { Id = 1, Name = "Laptop", Price = 1000, Description = "A high-end laptop" };
+                new Product { Id = 1, Name = "Laptop", Price = 1000, Description = "A high-end laptop" },
+                new Product {Id = 2, Name = "SmartPhone", Price = 500, Description= "Modern Phone" }
             };
         }
         public IEnumerable<Product> GetAll()

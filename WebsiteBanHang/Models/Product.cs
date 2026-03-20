@@ -14,6 +14,9 @@ namespace WebsiteBanHang.Models
         
         public string? ImageUrl {get; set;}//Đường dẫn ảnh đại diện 
         public List<string>? ImageUrls {get; set;}// Danh sách các hình ảnh khác 
-        
+
+        public Category? Category { get; set; }
+        public List<ProductImage>? Images { get; set; }
+
     }
 }

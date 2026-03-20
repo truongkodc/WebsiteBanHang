@@ -1,14 +1,20 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using WebsiteBanHang.Models;
 using WebsiteBanHang.Repositories;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton <IProductRepository, MockProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, MockCategoryRepository>();
 
 var app = builder.Build();
+
 
 if (!app.Environment.IsDevelopment())
 {
